@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>This is a login Page</h1>
+    <form method="post" action="{{ url_for('login') }}">
+        <input type="text" name="username" id="username" placeholder="Enter the Name">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if username %}
+        <p>Hello, {{ username }}!</p>
+    {% endif %}
+{% endblock %}
