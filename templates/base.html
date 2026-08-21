@@ -11,7 +11,7 @@
         <a href="/">Home</a>
         <a href="/about">about</a>
         <a href="/contact">contact</a>
-        <a href="/login">login</a>
+        <!-- <a href="/login">login</a> -->
     </nav>
 
     <main>
@@ -19,6 +19,27 @@
             
         {% endblock %}
     </main>
+
+    <section>
+        <div>
+            {% if session.get("username") %}
+
+                <a href="{{ url_for('dashboard' ) }}">
+                    dashboard
+                </a>
+
+                <a href="{{ url_for('logout' ) }}">
+                    logout
+                </a>   
+            {% else %}
+                    
+            <a href="{{ url_for('login' ) }}">
+                login
+            </a>
+                
+            {% endif %}
+        </div>
+    </section>
 
     {% block footer %}{% endblock %}
 </body>

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<h2>
+    Hello, {{ username }} 👋
+</h2>
+
+<p>
+    You are logged in.
+</p>
+
+<p>
+    Your username is stored in the Flask session.
+</p>
+
+<a href="{{ url_for('logout') }}">
+    Logout
+</a>
+
+{% endblock %}

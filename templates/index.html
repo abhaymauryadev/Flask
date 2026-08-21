@@ -12,6 +12,31 @@
 
 <p>This is the home page..</p>
 
+{% if username %}
+
+    <p>
+        Welcome back, {{ username }}!
+    </p>
+
+    <p>
+        Your name was found from a cookie.
+    </p>
+
+    <a href="{{ url_for('delete_cookie') }}">
+        Delete Cookie
+    </a>
+
+{% else %}
+
+    <p>
+        You are not logged in.
+    </p>
+
+    <a href="{{ url_for('login') }}">
+        Login
+    </a>
+
+{% endif %}
 {% endblock %}
 
 {% block footer %}
