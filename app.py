@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, session, make_response, redirect
-
+import mysql.connector
 app = Flask(__name__)
 
 app.secret_key = "dfvsadknfoenrfcoaef"
@@ -28,6 +28,14 @@ def login():
     if  request.method == 'POST':
 
         username = request.form["username"]
+
+        cursor = db.cursor()
+        cursor.execute(
+            "INSERT INTO users (username) VALUES (%s)",
+            (username,)
+        )
+        db.commit()
+        cursor.close()
 
         # store username in session
         session['username'] = username
@@ -82,6 +90,19 @@ def delete_cookie():
     response.delete_cookie("username")
 
     return response
+
+# Databases connection
+
+db = mysql.connector.connect(
+    host = 'localhost',
+    user='root',
+    password='root',
+    database='flask_db'
+)
+
+if db.is_connected():
+    print("Successfully connected from mysql")
+
 
 
 if __name__ == "__main__":
